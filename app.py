@@ -26,7 +26,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('mainindex.html')
+    return render_template('templates/mainindex.html')
 
 
 # @app.route('/login', methods=['GET', 'POST'])
