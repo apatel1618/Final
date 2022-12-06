@@ -3,14 +3,14 @@ print("Hello world!")
 # # Store this code in 'app.py' file
 
 
-# import email
-# from sqlite3 import Time
-# from telnetlib import NOP
-# from time import time
+import email
+from sqlite3 import Time
+from telnetlib import NOP
+from time import time
 from flask import Flask , render_template, request, redirect, url_for, session
-# #from flask_mysqldb import MySQL
-# import MySQLdb.cursors
-# import re
+#from flask_mysqldb import MySQL
+import MySQLdb.cursors
+import r
 
 
 app = Flask(__name__,template_folder="templates")
