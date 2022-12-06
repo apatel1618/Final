@@ -10,7 +10,7 @@ from time import time
 from flask import Flask , render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
-import r
+import re
 
 
 app = Flask(__name__,template_folder="templates")
