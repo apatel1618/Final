@@ -13,7 +13,7 @@ from flask import Flask , render_template, request, redirect, url_for, session
 # import re
 
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder="templates")
 
 
 # app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
@@ -26,7 +26,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('templates/mainindex.html')
+    return render_template('mainindex.html')
 
 
 # @app.route('/login', methods=['GET', 'POST'])
