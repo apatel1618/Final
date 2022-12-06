@@ -7,13 +7,13 @@ print("Hello world!")
 # from sqlite3 import Time
 # from telnetlib import NOP
 # from time import time
-# from flask import Flask , render_template, request, redirect, url_for, session
+from flask import Flask , render_template, request, redirect, url_for, session
 # #from flask_mysqldb import MySQL
 # import MySQLdb.cursors
 # import re
 
 
-# app = Flask(__name__)
+app = Flask(__name__)
 
 
 # app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
@@ -24,9 +24,9 @@ print("Hello world!")
 # mysql = MySQL(app)
 
 
-# @app.route('/')
-# def home():
-#     return render_template('mainindex.html')
+@app.route('/')
+def home():
+    return render_template('mainindex.html')
 
 
 # @app.route('/login', methods=['GET', 'POST'])
@@ -283,5 +283,5 @@ print("Hello world!")
 
 
 
-# if __name__ == '__main__':
-#     app.run()
+if __name__ == '__main__':
+    app.run()
