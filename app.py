@@ -64,16 +64,18 @@ def login():
 #     return render_template('mainindex.html', msg=msg)
 
 
-# @app.route('/logout')
-# def logout():
+@app.route('/logout')
+def logout():
+    return render_template('mainindex.html')
 #     session.pop('loggedin', None)
 #     session.pop('id', None)
 #     session.pop('username', None)
 #     return redirect(url_for('login'))
 
 
-# @app.route('/post_ride', methods=['GET', 'POST'])
-# def register():
+@app.route('/post_ride', methods=['GET', 'POST'])
+def register():
+    return render_template('mainindex.html')
 #     msg = ''
 #     value=''
 #     if request.method == 'POST' and 'email' in request.form and 'password' in request.form and 'confirmpassword' in request.form and 'fullname' in request.form and 'cmp' in request.form and 'in' in request.form and 'dl' in request.form and 'age' in request.form and 'pn' in request.form and 'gender' in request.form:
@@ -124,8 +126,9 @@ def login():
 #     return render_template('post_ride.html', msg=msg,value=value)
 
 
-# @app.route('/rides', methods=['GET', 'POST'])
-# def registernew():
+@app.route('/rides', methods=['GET', 'POST'])
+def registernew():
+    return render_template('mainindex.html')
 #     isSelected = -1
 #     def selectMethod(index):
 #         isSelected =index
@@ -171,8 +174,9 @@ def login():
 
 
 
-# @app.route('/registernew1', methods=['GET', 'POST'])
-# def registernew1():
+@app.route('/registernew1', methods=['GET', 'POST'])
+def registernew1():
+    return render_template('mainindex.html')
 #     msg = ''
 #     print('I am inside this fucntion')
 #     if request.method == 'POST' and 'origin' in request.form and 'destination' in request.form and 'date' in request.form and 'nops' in request.form and 't' in request.form:
@@ -240,8 +244,9 @@ def login():
 
 
 
-# @app.route('/passenger_ride_details.html',methods=['GET', 'POST'])
-# def passenger_ride_details():
+@app.route('/passenger_ride_details.html',methods=['GET', 'POST'])
+def passenger_ride_details():
+    return render_template('mainindex.html')
 #     value=request.form['check']
 #     passid=request.form['passid']
 #     driver_acc=''
