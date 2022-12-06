@@ -16,10 +16,10 @@ import re
 app = Flask(__name__,template_folder="templates")
 
 
-# app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
-# app.config['MYSQL_USER'] = 'b13c906fb0d4d4'
-# app.config['MYSQL_PASSWORD'] = '671b255c'
-# app.config['MYSQL_DB'] = 'b13c906fb0d4d4:671b255c@us-cdbr-east-06.cleardb.net/heroku_7bdb2e7bc3c1c7e?reconnect=true'
+app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
+app.config['MYSQL_USER'] = 'b13c906fb0d4d4'
+app.config['MYSQL_PASSWORD'] = '671b255c'
+app.config['MYSQL_DB'] = 'b13c906fb0d4d4:671b255c@us-cdbr-east-06.cleardb.net/heroku_7bdb2e7bc3c1c7e?reconnect=true'
 
 # mysql = MySQL(app)
 
@@ -31,37 +31,36 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('mainindex.html')
-#     msg = ''
-#     value=''
-#     if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
-#         email = request.form['email']
-#         password = request.form['password']
-#         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#         cursor.execute(
-#             'SELECT * FROM signup_driver WHERE Email = % s AND Password = % s', (email, password))
-#         account = cursor.fetchone()
-#         if account:
-#             #session['loggedin'] = True
-#             #session['id'] = account['id']
-#             #session['email'] = account['email']
-#             msg = 'Logged in successfully !'
-#             if account['Type'] == 'driver':
-#                 value=account['idsignup_driver']
-#                 value=int(value)
+    msg = ''
+    value=''
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+        email = request.form['email']
+        password = request.form['password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute(
+            'SELECT * FROM signup_driver WHERE Email = % s AND Password = % s', (email, password))
+        account = cursor.fetchone()
+        if account:
+            #session['loggedin'] = True
+            #session['id'] = account['id']
+            #session['email'] = account['email']
+            msg = 'Logged in successfully !'
+            if account['Type'] == 'driver':
+                value=account['idsignup_driver']
+                value=int(value)
 
-#                 return render_template('post_ride.html', msg=msg,value=value)
-#             if account['Type'] == 'passenger':
-#                 value=account['idsignup_driver']
-#                 value=int(value)
-#                 cursor = mysql.connection.cursor()
-#                 cursor.execute("""SELECT * FROM rides WHERE Seat_Available > 0; """)
-#                 data=cursor.fetchall()
-#                 print(data)
-#                 return render_template('rides.html', data=data,msg=msg,value=value)
-#         else:
-#             msg = 'Incorrect username / password !'
-#     return render_template('mainindex.html', msg=msg)
+                return render_template('post_ride.html', msg=msg,value=value)
+            if account['Type'] == 'passenger':
+                value=account['idsignup_driver']
+                value=int(value)
+                cursor = mysql.connection.cursor()
+                cursor.execute("""SELECT * FROM rides WHERE Seat_Available > 0; """)
+                data=cursor.fetchall()
+                print(data)
+                return render_template('rides.html', data=data,msg=msg,value=value)
+        else:
+            msg = 'Incorrect username / password !'
+    return render_template('mainindex.html', msg=msg)
 
 
 @app.route('/logout')
