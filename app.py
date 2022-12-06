@@ -251,6 +251,7 @@ def passenger_ride_details():
         'SELECT * FROM rides WHERE idrides = % s ', (value,))
     account = cursor.fetchone()
     print('Fetched account')
+    print(account)
     rideid=account['idrides']
     Seat=int (account['Seat_Available'])
     print(account)
