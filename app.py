@@ -14,6 +14,7 @@ import re
 
 
 app = Flask(__name__,template_folder="templates")
+app.secret_key = "super secret key"
 
 
 app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
