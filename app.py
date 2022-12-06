@@ -47,12 +47,12 @@ def login():
 #             session['email'] = account['email']
             msg = 'Logged in successfully !'
             if account['Type'] == 'driver':
-                value=account['idsignup_driver']
+                value=account['idsignup driver']
                 value=int(value)
 
                 return render_template('post_ride.html', msg=msg,value=value)
             if account['Type'] == 'passenger':
-                value=account['idsignup_driver']
+                value=account['idsignup driver']
                 value=int(value)
                 cursor = mysql.connection.cursor()
                 cursor.execute("""SELECT * FROM rides WHERE Seat_Available > 0; """)
