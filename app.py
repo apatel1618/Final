@@ -41,6 +41,7 @@ def login():
         cursor.execute(
             'SELECT * FROM signup_driver WHERE Email = % s AND Password = % s', (email, password))
         account = cursor.fetchone()
+        print(account)
         if account:
             session['loggedin'] = True
             session['id'] = account['id']
