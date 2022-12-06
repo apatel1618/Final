@@ -29,8 +29,9 @@ def home():
     return render_template('mainindex.html')
 
 
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('mainindex.html')
 #     msg = ''
 #     value=''
 #     if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
