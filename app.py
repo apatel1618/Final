@@ -17,9 +17,9 @@ app = Flask(__name__,template_folder="templates")
 
 
 app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
-app.config['MYSQL_USER'] = 'b13c906fb0d4d4'
-app.config['MYSQL_PASSWORD'] = '671b255c'
-app.config['MYSQL_DB'] = 'b13c906fb0d4d4:671b255c@us-cdbr-east-06.cleardb.net/heroku_7bdb2e7bc3c1c7e?reconnect=true'
+app.config['MYSQL_USER'] = 'ba63390635159b'
+app.config['MYSQL_PASSWORD'] = '8f6e310e'
+app.config['MYSQL_DB'] = 'ba63390635159b:8f6e310e@us-cdbr-east-06.cleardb.net/heroku_96a5a3444f06fe0?reconnect=true'
 
 mysql = MySQL(app)
 
