@@ -1,13 +1,10 @@
-print("Hello world!")
-
-# # Store this code in 'app.py' file
-
+# Store this code in 'app.py' file
 
 import email
 from sqlite3 import Time
 from telnetlib import NOP
 from time import time
-from flask import Flask , render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
@@ -21,6 +18,7 @@ app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
 app.config['MYSQL_USER'] = 'ba63390635159b'
 app.config['MYSQL_PASSWORD'] = '8f6e310e'
 app.config['MYSQL_DB'] = 'heroku_96a5a3444f06fe0'
+
 
 mysql = MySQL(app)
 
@@ -42,17 +40,17 @@ def login():
             'SELECT * FROM signup_driver WHERE Email = % s AND Password = % s', (email, password))
         account = cursor.fetchone()
         if account:
-#             session['loggedin'] = True
-#             session['id'] = account['id']
-#             session['email'] = account['email']
+            #session['loggedin'] = True
+            #session['id'] = account['id']
+            #session['email'] = account['email']
             msg = 'Logged in successfully !'
             if account['Type'] == 'driver':
-                value=account['idsignup driver']
+                value=account['idsignup_driver']
                 value=int(value)
 
                 return render_template('post_ride.html', msg=msg,value=value)
             if account['Type'] == 'passenger':
-                value=account['idsignup driver']
+                value=account['idsignup_driver']
                 value=int(value)
                 cursor = mysql.connection.cursor()
                 cursor.execute("""SELECT * FROM rides WHERE Seat_Available > 0; """)
@@ -211,32 +209,32 @@ def registernew1():
         
     value=cursor.fetchall()
     print(value)
-    rides = {}
-    finaloutput={}
+    #rides = {}
+    p=[]
+
     for i in value:
         print(i['idrides'])
-        count=i['idrides']
-        cursor.execute('select pass_id FROM details WHERE ride_id = % s ',(i['idrides'],))
+        cursor.execute('select pass_id,ride_id FROM details WHERE ride_id = % s ',(i['idrides'],))
         passid_details=cursor.fetchall()
-        rides.update({count:passid_details}) 
-        finaloutput.update({count:''})
-        print(rides)
+
         for j in passid_details:
             print("Inside the Loop")
             print(j)
-            cursor.execute('select FULLL_Name,pnumber FROM signup_driver WHERE idsignup_driver = % s ',(j['pass_id'],))
-            x=j['pass_id']
-            #for key,val in finaloutput:
-                #print("The Key is ",key)
-                #if count==key :
-            finaloutput[count] = [finaloutput[count],{x:cursor.fetchall()}]
-                #else:
-                    #finaloutput.update({x:cursor.fetchall()})
-            print("Updated List is ",finaloutput)
+            cursor.execute('select FULLL_Name,pnumber,idsignup_driver FROM signup_driver WHERE idsignup_driver = % s ',(j['pass_id'],))
+            print("Printing Output")
+            finaloutput=cursor.fetchone()
+            finaloutput.update(j)
+            cursor.execute(' select Route_Origin,Route_destination,Time,date FROM rides WHERE idrides = % s ',(j['ride_id'],))
+            d=cursor.fetchone()
+            finaloutput.update(d)
+
+            p.append(finaloutput)
+            print(p)
+
     
-    print(finaloutput)
+    print(p)
     print("Printing each item")
-    return render_template('driver_details.html', msg=msg, value=finaloutput)
+    return render_template('driver_details.html', msg=msg, value=p)
 
 
 
