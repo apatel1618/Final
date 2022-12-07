@@ -1,7 +1,7 @@
 import unittest
 
 # Import Flask's test client
-from flask.testing import FlaskClient
+#from flask.testing import FlaskClient
 
 
 from app import home
