@@ -6,66 +6,44 @@ from app import app
 # Import Flask's test client
 from flask.testing import FlaskClient
 
-class TestApp(unittest.TestCase):
-    # Set up a test client for the app
-    def setUp(self):
-        self.app = app.test_client()
-        self.app.testing = True
 
-    # Test the login route
-    def test_login(self):
-        # Test a successful login
-        result = self.app.post('/login', data={
-            'email': 'test@example.com',
-            'password': 'password'
-        })
-        self.assertEqual(result.status_code, 200)
-        self.assertIn(b'Logged in successfully !', result.data)
+from app import home
+from app import login
+from app import logout
+from app import register
+from app import registernew
+from app import registernew1
+from app import passenger_ride_details
 
-        # Test a login with an incorrect password
-        result = self.app.post('/login', data={
-            'email': 'test@example.com',
-            'password': 'incorrect_password'
-        })
-        self.assertEqual(result.status_code, 200)
-        self.assertIn(b'Incorrect username / password !', result.data)
 
-    # Test the logout route
-    def test_logout(self):
-        result = self.app.get('/logout')
-        self.assertEqual(result.status_code, 302)
-        self.assertIn(b'You have been logged out', result.data)
+# This code implements the unit test functionality
 
-    # Test the register route
-    def test_register(self):
-        # Test a successful registration
-        result = self.app.post('/register', data={
-            'email': 'test@example.com',
-            'password': 'password',
-            'confirm_password': 'password',
-            'name': 'Test User',
-            'cmp': 'Test Company',
-            'in': '123456',
-            'dl': 'DL123456',
-            'age': '18',
-            'pn': '1234567890',
-            'gender': 'Male'
-        })
-        self.assertEqual(result.status_code, 200)
-        self.assertIn(b'Account created successfully !', result.data)
 
-        # Test a registration with a password and confirmation password that don't match
-        result = self.app.post('/register', data={
-            'email': 'test@example.com',
-            'password': 'password',
-            'confirm_password': 'incorrect_password',
-            'name': 'Test User',
-            'cmp': 'Test Company',
-            'in': '123456',
-            'dl': 'DL123456',
-            'age': '18',
-            'pn': '1234567890',
-            'gender': 'Male'
-        })
-        self.assertEqual(result.status_code, 200)
-        self.assertIn(b'Passwords do not match !', result.data)
+class app(unittest.TestCase):
+    # define multiple sets of tests as functions with names that begin
+
+    def testhome(self): 
+        self.assertEqual(home(render_template),'true','home page is tested successfully')
+
+    def testlogin(self): 
+        self.assertEqual(login(render_template),'true','login page is tested successfully')
+
+    def testlogout(self):
+        self.assertEqual(logout(redirect),'true','logout page is tested successfully')
+        
+    def testregister(self): 
+        self.assertEqual(register(render_template),'true','register page is tested successfully')
+
+    def testregisternew(self):
+        self.assertEqual(registernew(render_template),'true','registernew page is tested successfully')
+
+    def testregisternew1(self):
+        self.assertEqual(registernew1(render_template),'true','registernew1 page is tested successfully')
+    
+    def testpassenger_ride_details(self):
+        self.assertEqual(passenger_ride_details(render_template),'true','passenger_ride_details page is tested successfully')
+
+    
+if __name__ == '__main__':
+    print('Running unit tests')
+    unittest.main()
