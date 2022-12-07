@@ -1,8 +1,5 @@
 import unittest
 
-# Import the app module from app.py
-from app import app
-
 # Import Flask's test client
 from flask.testing import FlaskClient
 
