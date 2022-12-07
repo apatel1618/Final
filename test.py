@@ -3,7 +3,7 @@ import unittest
 # Import Flask's test client
 #from flask.testing import FlaskClient
 
-
+from app import flask
 from app import home
 from app import login
 from app import logout
