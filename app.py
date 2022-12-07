@@ -15,9 +15,9 @@ app.secret_key = "super secret key"
 
 
 app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
-app.config['MYSQL_USER'] = 'ba63390635159b'
-app.config['MYSQL_PASSWORD'] = '8f6e310e'
-app.config['MYSQL_DB'] = 'heroku_96a5a3444f06fe0'
+app.config['MYSQL_USER'] = 'bc279df3029781'
+app.config['MYSQL_PASSWORD'] = '7f08a29b'
+app.config['MYSQL_DB'] = 'heroku_bc4970188a23d8b'
 
 
 mysql = MySQL(app)
